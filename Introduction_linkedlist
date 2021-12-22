@@ -1,0 +1,42 @@
+// Editor : Saurabh S. Joshi
+// Date:22-12-2021 @ 10:46
+// --------------------------------------------------------------------------------------
+#include<bits/stdc++.h>
+using namespace std;
+
+struct node {
+    int data;
+    struct node* next;
+};
+
+void print(node* n){
+    while(n!= NULL){
+        cout<<n->data;
+        if(n->next!=NULL){
+            cout<<"->";
+        }
+        n=n->next;
+    }
+}
+
+int main(){
+    node *head=NULL;
+    node* second=NULL;
+    node* third=NULL;
+    
+    head=new node();
+    second= new node();
+    third=new node();
+    
+    head->data=13;
+    head->next=second;
+    
+    second->data=56;
+    second->next=third;
+    
+    third->data=93;
+    third->next=NULL;
+    
+    print(head);
+    return 0;
+}
