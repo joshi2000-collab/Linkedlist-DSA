@@ -1,0 +1,61 @@
+// Editor : Saurabh S. Joshi
+// Date:22-12-2021 @ 11:30
+// --------------------------------------------------------------------------------------
+#include<bits/stdc++.h>
+using namespace std;
+
+class node {
+    public:
+        int data;
+        struct node* next;
+};
+// Insert the node at the front of the linked list using pointer to pointer approach
+void push(node** head_ref, int new_data ){
+    node* new_node=new node();
+    new_node->data=new_data;
+    new_node->next= (*head_ref);
+    (*head_ref)=new_node;
+}
+
+void deletenode(node** head_ref,int key){
+    node* temp=*head_ref;
+    node* prev=NULL;
+    if(temp!=NULL && temp->data==key){
+        *head_ref=temp->next;
+        delete temp;
+        return;
+        
+    }
+    else{
+        while(temp!=NULL && temp->data !=key){
+            prev=temp;
+            temp=temp->next;
+        }
+        if(temp==NULL)
+         return;
+         prev->next=temp->next;
+         delete temp;
+    }
+}
+
+
+void print(node* node){
+    while(node!=NULL){
+        cout<<node->data<<" ";
+        node=node->next;
+    }
+}
+
+int main(){
+    node* head=NULL;
+    push(&head,7);
+    push(&head,1);
+    push(&head,5);
+    push(&head,9);
+    cout<<"Created Linked List:";
+    print(head);
+    deletenode(&head,5);
+    puts("\nLinkedlist after deletion of 5");
+    print(head);
+    return 0;
+}
