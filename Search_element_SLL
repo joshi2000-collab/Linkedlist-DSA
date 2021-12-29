@@ -1,0 +1,71 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+// Name: Joshi Saurabh S.
+
+#include<iostream>
+using namespace std;
+
+class node{
+    public:
+     int data;
+     node* next;
+     
+};
+// Delete whole LL
+void deleteList(node** head_ref){
+    node* current=*head_ref;
+    node* next=NULL;
+    while(current!=NULL){
+        next=current->next;
+        free(current);
+        current=next;
+    }
+    *head_ref=NULL;
+    
+}
+// Push the element at the front of the LL
+void push(node** head_ref,int new_data){
+    node* new_node=new node();  //Create new node
+    new_node->data=new_data;    
+    new_node->next=(*head_ref);
+    (*head_ref)=new_node;
+}
+
+void print(node* node){
+    while(node!=NULL){
+        cout<<node->data<<" ";
+        node=node->next;
+    }
+}
+bool search(node* head,int x){
+    node* current=head;
+    while(current!=NULL){
+        if(current->data==x)
+          return true;
+        current=current->next; 
+    }
+    return false;
+}
+int main(){
+    node* head=NULL;
+    push(&head, 7);
+    push(&head, 4);
+    push(&head, 16);
+    push(&head, 12);
+    push(&head, 99);
+    
+    print(head);
+    search(head,16)? cout<<"\nElement is present": cout<<"\nElement is not present";
+    search(head,55)? cout<<"\nElement is present": cout<<"\nElement is not present";
+    cout<<"\nDeleting linked list";
+    deleteList(&head);
+    cout<<"\nLinked list deleted";
+    return 0;
+    
+}
